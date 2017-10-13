@@ -1,10 +1,17 @@
 ## react-sky
 
----
 
 A React component with a background of starry and telescope moving around to explore it.
 
 ## Usage
+
+### attribute
+
+name | type | default
+--- | --- | ---
+width | number\|string | '100%'
+height | number\|string | 'auto'
+starColor | string('#rrggbb') | '#ffffff'
 
 ```js
 import Sky from 'Sky'
@@ -40,14 +47,6 @@ class Demo extends React.Component {
     }
 }
 ```
-
-### attribute
-
-name | type | default
---- | --- | ---
-width | number|string | '100%'
-height | number|string | 'auto'
-starColor | string('#rrggbb') | '#ffffff'
 
 ## Demo
 

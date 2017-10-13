@@ -1,0 +1,26 @@
+{
+  "name": "react-sky",
+  "version": "1.0.0",
+  "description": "a discover sky component built with React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clumsyme/react-sky.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "Li Yan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clumsyme/react-sky/issues"
+  },
+  "homepage": "https://github.com/clumsyme/react-sky#readme",
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}

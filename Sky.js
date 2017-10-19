@@ -5,7 +5,7 @@ import stars from './sky.svg'
 const styles = {
     container: {
         position: 'relative',
-        backgroundColor: '#1a1d1e',
+        backgroundColor: '#242829',
         overflow: 'hidden',
         padding: 40,
         boxSizing: 'border-box',
@@ -44,13 +44,35 @@ export default class Sky extends Component {
         exploreLeft: 0,
         exploreScale: 1,
     }
-    componentDidMount() {
+    componentDidMount = () => {
         setTimeout(() => {
             this.exploreNewPlace()
-            setInterval(() => {
+            this.it = setInterval(() => {
                 this.exploreNewPlace();
             }, 8000)
         }, 0)
+    }
+
+    manuDiscover = (e) => {
+        clearInterval(this.it)
+        clearTimeout(this.to)
+        this.explore.style.transition = 'all 1s ease-out'
+        const exploreLeft = (e.clientX - 210) + 'px'
+        const exploreTop = (e.clientY - 210) + 'px'
+        let exploreScale = 0.5 + 0.5 * Math.random();
+        this.setState({
+            exploreTop,
+            exploreLeft,
+            exploreScale,
+        }, () => {
+            this.to = setTimeout(() => {
+                this.explore.style.transition = 'all 8s ease-out'
+                this.exploreNewPlace()
+                this.it = setInterval(() => {
+                    this.exploreNewPlace();
+                }, 8000)
+            }, 3000)
+        });
     }
 
     exploreNewPlace() {
@@ -68,11 +90,12 @@ export default class Sky extends Component {
     render() {
         const width = this.props.width || '100%'
         const height = this.props.height || 'auto'
-        const starColor = this.props.starColor || "#ffffff"
-        
+        // const starColor = this.props.starColor || "#ffffff"
+
         const { exploreTop, exploreLeft, exploreScale } = this.state
         return (
             <div
+                onClick={this.manuDiscover}
                 ref={sky => { this.sky = sky }}
                 style={{
                     ...styles.container,
@@ -82,11 +105,12 @@ export default class Sky extends Component {
             >
                 <div style={{ ...styles.stars }}></div>
                 <div
+                    ref={explore => { this.explore = explore }}
                     style={{
                         ...styles.explore,
                         top: exploreTop,
                         left: exploreLeft,
-                        background: `radial-gradient(ellipse at center,${starColor} 0,${starColor + '00'} 80%,${starColor + '00'} 100%)`,
+                        backgroundImage: "radial-gradient(rgba(255, 255, 255, 1) 0%,rgba(255, 255, 255, 0) 80%,rgba(255, 255, 255, 0) 100%)",
                         transform: `scale(${exploreScale})`,
                     }}
                 />
